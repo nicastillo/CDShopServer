@@ -73,7 +73,27 @@ public class DBAgent {
         
     }
 
-
+    
+    
+    public ArrayList<Product> getProductCatalog(){
+        ResultSet rs;
+        ArrayList<Product> products = new ArrayList<Product>();     
+        try { 
+        rs = getQueryResult("get_products");
+          while (rs.next()) {
+            Product p = new Product();
+            p.title = rs.getString("title");
+            p.price = rs.getDouble("price");
+            p.category = rs.getString("category");
+            products.add(p);
+            } 
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        return products;
+    }
+    
+    
     public ArrayList<String> getCategoryList(){
         ResultSet rs;
         ArrayList<String> categories = new ArrayList<String>();     
@@ -89,6 +109,24 @@ public class DBAgent {
         }
         return categories;
     }
+    
+//      public ArrayList<Product> getProductList(String categoryId){
+//        ResultSet rs;
+//        ArrayList<Product> products = new ArrayList<Product>();     
+//        try { 
+//        rs = getQueryResult("get_products_by_category");
+//          while (rs.next()) {
+//            Product p = new Product();
+//            p.title = rs.getString("title");
+//            p.price = rs.getDouble("price");
+//            p.category = rs.getString("category");
+//            products.add(p);
+//            } 
+//        } catch (SQLException e){
+//            System.out.println(e);
+//        }
+//        return products;
+//    }
     
     
     public Product getProductInfo(int productId) {

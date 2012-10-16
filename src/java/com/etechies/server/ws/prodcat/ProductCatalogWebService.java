@@ -4,9 +4,10 @@
  */
 package com.etechies.server.ws.prodcat;
 
-import com.etechies.server.beans.Product;
 //import com.etechies.server.beans.CDList;
+import com.etechies.server.beans.Product;
 import com.etechies.server.dbagent.DBAgent;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -40,22 +41,31 @@ public class ProductCatalogWebService {
     /**
      * Web service operation
      */
+    @WebMethod(operationName = "getProductCatalog")
+    public ArrayList<Product> getProductCatalog() {
+        //TODO write your implementation code here:
+        DBAgent agent = new DBAgent();
+        ArrayList<Product> products;
+        products = agent.getProductCatalog();
+   
+        
+        return products;
+    }
+    
+        /**
+     * Web service operation
+     */
 //    @WebMethod(operationName = "getProductList")
-//    public CDList getProductList(@WebParam(name = "ProductID") int ProductID) {
+//    public ArrayList<Product> getProductList(@WebParam(name = "categoryId") String categoryId) {
 //        //TODO write your implementation code here:
 //        DBAgent agent = new DBAgent();
-//        Product tempBean = agent.getProductInfo(1);
+//        ArrayList<Product> products;
+//        products = agent.getProductCatalog();
+//   
 //        
-//        CDList list = new CDList();
-//        list.cd = new Product[5];
-//        list.cd[0] = tempBean;
-//        list.cd[1] = tempBean;
-//        list.cd[2] = tempBean;
-//        list.cd[3] = tempBean;
-//        list.cd[4] = tempBean;
-//        
-//        return list;
+//        return products;
 //    }
+
 
 //    /**
 //     * Web service operation
@@ -70,8 +80,13 @@ public class ProductCatalogWebService {
      * Web service operation
      */
     @WebMethod(operationName = "getCategoryList")
-    public String getCategoryList() {
+    public ArrayList<String> getCategoryList() {
+        DBAgent agent = new DBAgent();
+        ArrayList<String> list;
+        list = agent.getCategoryList();
+        
+        
         //TODO write your implementation code here:
-        return null;
+        return list;
     }
 }
