@@ -17,11 +17,12 @@ public class ProductDAO {
         
         String[] param = {category};
         ArrayList<Product> cdlist = new ArrayList<Product>();
-        Product cd = new Product();
+        //Product cd = new Product();
         
         try {
             ResultSet rs = dba.getQueryResult("get_products_by_category",param);
                 while(rs.next()){
+                Product cd = new Product();
                 cd.cdId=rs.getString("cdid");
                 cd.category=rs.getString("category");
                 cd.price=rs.getDouble("price");
