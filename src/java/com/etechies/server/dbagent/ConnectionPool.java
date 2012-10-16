@@ -20,42 +20,36 @@ public class ConnectionPool {
     
    // DbAgentUtil objProp = null;
     /**
-     * Method getConnection. Used from connection pooling example provided on course web-site.
+     * Method getConnectionPool. Used from connection pooling example provided on course web-site.
      *
      * @return Connection object
      */
-    public Connection getConnection() throws SQLException {
+    public Connection getConnectionPool() {
         Connection con = null;
         PropPicker objProp = new PropPicker();
         try {
-          
             InitialContext ctx = new InitialContext();
-            DataSource dataSource = (DataSource) ctx.lookup(objProp.getProperty("context"));
-            con = dataSource.getConnection();
-            System.out.println("Datasource registered in JNDI is in use.");
-        } catch (NamingException e) {
-            
-            // DataSource JNDI config failed, use DriverManager instead
-            try {
-                // Set the system property, without this the initialContext
-                // throws an error.
-                Class.forName(objProp.getProperty("driver"));
-            } catch (ClassNotFoundException ex) {
-                // throw new RuntimeException("JDBC Driver class not found.",
-                // exp);
-                System.err.println("JDBC Driver class not found.");
+            if (ctx == null){
+                System.out.println("JNDI problem. Cannot get InitialContext.");
             }
-            //String connection = objProp.getProperty("url");
-            //String user = objProp.getProperty("user");
-            //String pass = objProp.getProperty("password");
-            //con = DriverManager.getConnection(connection, // url
-                    //user, // user of connection
-                    //pass// your password
-                    //);
+            DataSource dataSource;
+            dataSource = (DataSource) ctx.lookup(objProp.getProperty("context"));
             
+            if (dataSource != null) {
+                con = dataSource.getConnection();
+            }
+            else {
+                System.out.println("Failed to lookup datasource.");
+            }
+            
+        } catch (NamingException e) {
+            System.out.println("Cannot get connection: " + e);
+        } catch(SQLException e){
+            System.out.println("Cannot get connection: " + e);
         }
-        return con;
+            return con;
     }
+         
     
       
         

@@ -25,7 +25,7 @@ public class DBAgent {
         ConnectionPool cp = null;
         PreparedStatement pstmt = null;
         int rows = 0;
-        Connection conn = cp.getConnection();
+        Connection conn = cp.getConnectionPool();
         try {
             String query = objProp.getQuery(queryId);
             pstmt = conn.prepareStatement(query);
@@ -38,16 +38,37 @@ public class DBAgent {
     
     public ResultSet getQueryResult(String queryId) throws SQLException{    
         ConnectionPool cp = new ConnectionPool();
-        Connection conn = cp.getConnection();
+        Connection conn;
+        conn = cp.getConnectionPool();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
             String query = objProp.getQuery(queryId);
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();          
-      } catch (SQLException e){
+        } catch (SQLException e){
             System.out.println(e.getMessage());
-      } 
+        }
+//        } finally {
+//            if (rs != null) {
+//                try {
+//                  rs.close();
+//                } catch (SQLException e) {
+//                } // nothing we can do
+//            }
+//            if (pstmt != null) {
+//                try {
+//                    pstmt.close();
+//              } catch (SQLException e) {
+//              } // nothing we can do
+//            }
+//            if (conn != null) {
+//              try {
+//                conn.close();
+//              } catch (SQLException e) {
+//              } // nothing we can do
+//            }
+//        }
         return rs;
         
     }

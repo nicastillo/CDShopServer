@@ -26,7 +26,7 @@
         
         
         <% DBAgent db = new DBAgent();
-        ArrayList<String> categories = null;
+        ArrayList<String> categories = new ArrayList<String>();
         categories = db.getCategoryList();%>
         
         <div id="main">
