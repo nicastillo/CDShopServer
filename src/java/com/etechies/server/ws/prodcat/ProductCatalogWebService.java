@@ -6,11 +6,13 @@ package com.etechies.server.ws.prodcat;
 
 //import com.etechies.server.beans.CDList;
 import com.etechies.server.beans.Product;
-import com.etechies.server.dbagent.DBAgent;
+import com.etechies.server.dao.CategoryDAO;
+import com.etechies.server.dao.ProductDAO;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import sun.management.resources.agent;
 
 /**
  *
@@ -41,22 +43,8 @@ public class ProductCatalogWebService {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "getProductCatalog")
-    public ArrayList<Product> getProductCatalog() {
-        //TODO write your implementation code here:
-        DBAgent agent = new DBAgent();
-        ArrayList<Product> products;
-        products = agent.getProductCatalog();
-   
-        
-        return products;
-    }
-    
-        /**
-     * Web service operation
-     */
-//    @WebMethod(operationName = "getProductList")
-//    public ArrayList<Product> getProductList(@WebParam(name = "categoryId") String categoryId) {
+//    @WebMethod(operationName = "getProductCatalog")
+//    public ArrayList<Product> getProductCatalog() {
 //        //TODO write your implementation code here:
 //        DBAgent agent = new DBAgent();
 //        ArrayList<Product> products;
@@ -65,6 +53,18 @@ public class ProductCatalogWebService {
 //        
 //        return products;
 //    }
+    
+        /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getProductList")
+    public ArrayList<Product> getProductList(@WebParam(name = "categoryId") String categoryId) {
+        //TODO write your implementation code here:
+        ProductDAO prodDAO = new ProductDAO();
+        ArrayList<Product> prodList;
+        prodList = prodDAO.getProductList(categoryId);
+        return prodList;
+    }
 
 
 //    /**
@@ -81,11 +81,12 @@ public class ProductCatalogWebService {
      */
     @WebMethod(operationName = "getCategoryList")
     public ArrayList<String> getCategoryList() {
-        DBAgent agent = new DBAgent();
+        
+        CategoryDAO catDAO = new CategoryDAO();
         ArrayList<String> list;
-        list = agent.getCategoryList();
+        list = catDAO.getCategoryList();
         
-        
+
         //TODO write your implementation code here:
         return list;
     }

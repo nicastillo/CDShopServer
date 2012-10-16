@@ -10,7 +10,7 @@ package com.etechies.server.beans;
  */
 public class Product {
 
-    public int cdId;
+    public String cdId;
     public String category;
     public String title;
     public double price;

@@ -20,11 +20,11 @@ public class ConnectionPool {
     
    // DbAgentUtil objProp = null;
     /**
-     * Method getConnectionPool. Used from connection pooling example provided on course web-site.
+     * Method getConnection. Used from connection pooling example provided on course web-site.
      *
      * @return Connection object
      */
-    public Connection getConnectionPool() {
+    public Connection getConnection()throws SQLException{
         Connection con = null;
         PropPicker objProp = new PropPicker();
         try {
