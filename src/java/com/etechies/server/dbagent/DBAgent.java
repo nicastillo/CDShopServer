@@ -4,7 +4,7 @@
  */
 package com.etechies.server.dbagent;
 
-import com.etechies.server.beans.*;
+import com.etechies.server.dbagent.beans.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
