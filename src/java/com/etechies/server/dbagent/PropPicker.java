@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package com.etechies.server.dbagent;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -12,27 +11,18 @@ import java.util.Properties;
  * @author Aman
  */
 public class PropPicker {
-    
 
-    //public static String dbProperties = "com/etechies/properties/databaseparameters.properties";
-    
-    public String queryPropertyFile = "sqlproperties.properties";
-
-        
     /* Returns a specific property from the "databaseparameters.properties" file.
      * @param propName - unique identificator for the property in the properties file
      * @returns the property specified by propName
      */
     public String getProperty(String propName) {
         Properties prop = new Properties();
-       // InputStream inputStream = ShopDbConnectionPool.class.getClassLoader().getResourceAsStream("./db.properties");
-        try {
-            
+        try { 
             prop.load(this.getClass().getClassLoader().getResourceAsStream("com/etechies/properties/dbparams.properties"));
         } catch (IOException e) {
             System.out.println("Error reading properties File" + e);
         }
-
         String propValue = prop.getProperty(propName);
         return propValue;
     }
@@ -49,7 +39,6 @@ public class PropPicker {
         } catch (IOException e) {
             System.out.println("Error reading properties File" + e);
         }
-
         String propValue = prop.getProperty(queryId);
         return propValue;
     

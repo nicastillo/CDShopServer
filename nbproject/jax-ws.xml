@@ -4,6 +4,9 @@
     <service name="ProductCatalogWebService">
       <implementation-class>com.etechies.server.ws.prodcat.ProductCatalogWebService</implementation-class>
     </service>
+    <service name="OrderProcessWebSerice">
+      <implementation-class>com.etechies.server.ws.orderproc.OrderProcessWebSerice</implementation-class>
+    </service>
   </services>
   <clients/>
   <jsr109>false</jsr109>

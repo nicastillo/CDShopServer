@@ -115,60 +115,6 @@ public class DBAgent {
         conn.rollback();
     }
     
-//    public ArrayList<Product> getProductCatalog(){
-//        ResultSet rs;
-//        ArrayList<Product> products = new ArrayList<Product>();     
-//        try { 
-//        rs = getQueryResult("get_products", null);
-//          while (rs.next()) {
-//            Product p = new Product();
-//            p.setCdId(rs.getString("cdID"));
-//            p.setTitle(rs.getString("title"));
-//            p.setPrice(rs.getDouble("price"));
-//            p.setCategory(rs.getString("category"));
-//            products.add(p);
-//            } 
-//        } catch (SQLException e){
-//            System.out.println(e);
-//        }
-//        return products;
-//    }
-    
-//    public ArrayList<String> getCategoryList(){
-//        ResultSet rs;
-//        ArrayList<String> categories = new ArrayList<String>();     
-//        try { 
-//        rs = getQueryResult("get_categories", null);
-//          while (rs.next()) {
-//            //Product p = new Product();
-//            //rs.getString("category");
-//            categories.add(rs.getString("category"));
-//            } 
-//        } catch (SQLException e){
-//            System.out.println(e);
-//        }
-//        return categories;
-//    }
-//    
-//      public ArrayList<Product> getProductList(String categoryId){
-//        ResultSet rs;
-//        ArrayList<Product> products = new ArrayList<Product>();
-//        String[] category = {categoryId};
-//        try { 
-//        rs = getQueryResult("get_products_by_category", category);
-//          while (rs.next()) {
-//            Product p = new Product();
-//            p.title = rs.getString("title");
-//            p.price = rs.getDouble("price");
-//            p.category = rs.getString("category");
-//            products.add(p);
-//            } 
-//        } catch (SQLException e){
-//            System.out.println(e);
-//        }
-//        return products;
-//    }
-    
 //    public Product getProductInfo(int productId) {
 //        // SQL Queries here
 //        
@@ -182,16 +128,6 @@ public class DBAgent {
 //        bean.price = 10.00;
 //        
 //        return bean;
-//    }
-    
-    
-    /**
-     *
-     * @param categoryid
-     * @return
-     */
-//    public CDList getProductList (int categoryid){
-//        return null;
 //    }
     
 }
