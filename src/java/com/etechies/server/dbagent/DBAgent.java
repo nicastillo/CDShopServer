@@ -115,24 +115,24 @@ public class DBAgent {
         conn.rollback();
     }
     
-    public ArrayList<Product> getProductCatalog(){
-        ResultSet rs;
-        ArrayList<Product> products = new ArrayList<Product>();     
-        try { 
-        rs = getQueryResult("get_products", null);
-          while (rs.next()) {
-            Product p = new Product();
-            p.cdId = rs.getString("cdID");
-            p.title = rs.getString("title");
-            p.price = rs.getDouble("price");
-            p.category = rs.getString("category");
-            products.add(p);
-            } 
-        } catch (SQLException e){
-            System.out.println(e);
-        }
-        return products;
-    }
+//    public ArrayList<Product> getProductCatalog(){
+//        ResultSet rs;
+//        ArrayList<Product> products = new ArrayList<Product>();     
+//        try { 
+//        rs = getQueryResult("get_products", null);
+//          while (rs.next()) {
+//            Product p = new Product();
+//            p.setCdId(rs.getString("cdID"));
+//            p.setTitle(rs.getString("title"));
+//            p.setPrice(rs.getDouble("price"));
+//            p.setCategory(rs.getString("category"));
+//            products.add(p);
+//            } 
+//        } catch (SQLException e){
+//            System.out.println(e);
+//        }
+//        return products;
+//    }
     
 //    public ArrayList<String> getCategoryList(){
 //        ResultSet rs;
@@ -169,20 +169,20 @@ public class DBAgent {
 //        return products;
 //    }
     
-    public Product getProductInfo(int productId) {
-        // SQL Queries here
-        
-        //ResultSet queryResult = executeSQL();
-        // Get CD Row from CD Database Table
-        
-        Product bean = new Product();
-        bean.category = "Rock";
-        //bean.cdId = 2;
-        bean.title = "Linkin Park";
-        bean.price = 10.00;
-        
-        return bean;
-    }
+//    public Product getProductInfo(int productId) {
+//        // SQL Queries here
+//        
+//        //ResultSet queryResult = executeSQL();
+//        // Get CD Row from CD Database Table
+//        
+//        Product bean = new Product();
+//        bean.category = "Rock";
+//        //bean.cdId = 2;
+//        bean.title = "Linkin Park";
+//        bean.price = 10.00;
+//        
+//        return bean;
+//    }
     
     
     /**

@@ -4,9 +4,6 @@
     Author     : Aman
 --%>
 
-<%@page import="com.etechies.server.beans.Product"%>
-<%@page import="com.etechies.server.dao.ProductDAO"%>
-<%@page import="com.etechies.server.dao.CategoryDAO"%>
 <%@page import="com.etechies.server.dbagent.DBAgent"%>
 <%@page import="java.util.ArrayList"%>
 <%--<%@page import="com.etechies.server.beans.Product"%>
@@ -28,9 +25,7 @@
     <body>
         
         
-        <% ProductDAO dao = new ProductDAO();
-        ArrayList<Product> products = new ArrayList<Product>();
-        products = dao.getProductList("country");%>
+        <% %>
         
         <div id="main">
             

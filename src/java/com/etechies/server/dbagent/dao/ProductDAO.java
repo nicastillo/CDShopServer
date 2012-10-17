@@ -23,10 +23,10 @@ public class ProductDAO {
             ResultSet rs = dba.getQueryResult("get_products_by_category",param);
                 while(rs.next()){
                 Product cd = new Product();
-                cd.cdId=rs.getString("cdid");
-                cd.category=rs.getString("category");
-                cd.price=rs.getDouble("price");
-                cd.title=rs.getString("title");
+                cd.setCdId(rs.getString("cdid"));
+                cd.setCategory(category=rs.getString("category"));
+                cd.setPrice(rs.getDouble("price"));
+                cd.setTitle(rs.getString("title"));
                    cdlist.add(cd);
             }
         } catch (SQLException ex) {
@@ -49,9 +49,13 @@ public class ProductDAO {
         rs = dba.getQueryResult("get_products", null);
           while (rs.next()) {
             Product p = new Product();
-            p.title = rs.getString("title");
-            p.price = rs.getDouble("price");
-            p.category = rs.getString("category");
+            p.setTitle(rs.getString("title"));
+            p.setPrice(rs.getDouble("price"));
+            p.setCategory(rs.getString("category"));
+            
+//            p.title = rs.getString("title");
+//            p.price = rs.getDouble("price");
+//            p.category = rs.getString("category");
             products.add(p);
             } 
         } catch (SQLException e){
