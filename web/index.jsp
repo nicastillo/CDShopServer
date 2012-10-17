@@ -4,13 +4,8 @@
     Author     : Aman
 --%>
 
-<%@page import="com.etechies.server.dbagent.DBAgent"%>
-<%@page import="java.util.ArrayList"%>
-<%--<%@page import="com.etechies.server.beans.Product"%>
-<%@page import="com.etechies.server.dbagent.DBAgent"%>
-<%@page import="com.etechies.server.dbagent.ConnectionPool"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>--%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -25,7 +20,8 @@
     <body>
         
         
-        <% %>
+        <% 
+        %>
         
         <div id="main">
             
