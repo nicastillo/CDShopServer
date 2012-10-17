@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.etechies.server.dao;
+package com.etechies.server.dbagent.dao;
 
 import com.etechies.server.dbagent.DBAgent;
 import java.sql.ResultSet;

@@ -1,5 +1,5 @@
-package com.etechies.server.dao;
-import com.etechies.server.beans.*;
+package com.etechies.server.dbagent.dao;
+import com.etechies.server.dbagent.beans.Product;
 import com.etechies.server.dbagent.DBAgent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,25 +35,30 @@ public class ProductDAO {
         return cdlist;
     }
     
-        
-//      public ArrayList<Product> getProductList(String categoryId){
-//        ResultSet rs;
-//        ArrayList<Product> products = new ArrayList<Product>();
-//        String[] category = {categoryId};
-//        try { 
-//        rs = getQueryResult("get_products_by_category", category);
-//          while (rs.next()) {
-//            Product p = new Product();
-//            p.title = rs.getString("title");
-//            p.price = rs.getDouble("price");
-//            p.category = rs.getString("category");
-//            products.add(p);
-//            } 
-//        } catch (SQLException e){
-//            System.out.println(e);
-//        }
-//        return products;
-//    }
+    /* 
+     * @param
+     * @returns
+     */  
+    
+    
+      public ArrayList<Product> getProductCatalog(){
+        ResultSet rs;
+        ArrayList<Product> products = new ArrayList<Product>();
+        //String[] category = {categoryId};
+        try { 
+        rs = dba.getQueryResult("get_products", null);
+          while (rs.next()) {
+            Product p = new Product();
+            p.title = rs.getString("title");
+            p.price = rs.getDouble("price");
+            p.category = rs.getString("category");
+            products.add(p);
+            } 
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+        return products;
+    }
     
     
     
@@ -61,7 +66,7 @@ public class ProductDAO {
     
     
     
-//    public ArrayList<Product> getProductList (){
+//    public ArrayList<Product> getProductCatalog (){
 //        
 //       // String[] param = {category};
 //        ArrayList<Product> cdlist=null;
