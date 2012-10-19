@@ -16,11 +16,13 @@ import java.util.List;
  *
  * @author Aman
  * @author Natalia
+ * This class gets the connection from the ConnetionPool class and is in charge of executing the queries to either update or retrieve data
  */
 public class DBAgent { 
     Connection conn = null;
     ConnectionPool cp = null;
     PropPicker prop = new PropPicker(); 
+    
     public DBAgent(){
         try {
             /*creating a coonection to mysql database */
@@ -32,11 +34,15 @@ public class DBAgent {
         }
     }
     
+    /* This class executes a specific query and updates data in the database
+     * @param queryid - the identifier of the sqlqueries.properties file
+     * @param parameters - the list of parameters of the query
+     * @returns the rows affected by the query
+     */
     public int executeSQL(String queryId, String[] parameters) throws SQLException {
         PreparedStatement pstmt = null;
         int intRows = 0;
         ResultSet rs = null;
-        //conn = cp.getConnection();
         try {
             String query = prop.getQuery(queryId);
             pstmt = conn.prepareStatement(query);
@@ -54,10 +60,18 @@ public class DBAgent {
             intRows = pstmt.executeUpdate();          
       } catch (SQLException e){
             System.out.println(e.getMessage());
+            if (e.getMessage().equals("MySQLIntegrityConstraintViolationException")){
+                intRows = 0;
+            }
       } 
         return intRows;
     }
     
+     /* This class executes a specific query and reads data from the database
+     * @param queryid - the identifier of the sqlqueries.properties file
+     * @param parameters - the list of parameters of the query
+     * @returns the resultset
+     */
     public ResultSet getQueryResult(String queryId, String[] parameters){    
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -74,26 +88,6 @@ public class DBAgent {
             System.out.println(e.getMessage());
             //this.rollBack();
         }
-//        } finally {
-//            if (rs != null) {
-//                try {
-//                  rs.close();
-//                } catch (SQLException e) {
-//                } // nothing we can do
-//            }
-//            if (pstmt != null) {
-//                try {
-//                    pstmt.close();
-//              } catch (SQLException e) {
-//              } // nothing we can do
-//            }
-//            if (conn != null) {
-//              try {
-//                conn.close();
-//              } catch (SQLException e) {
-//              } // nothing we can do
-//            }
-//        }
         return rs;
         
     }
@@ -101,33 +95,20 @@ public class DBAgent {
     public void startTransaction() throws Exception {
         conn.setAutoCommit(false);
     }
-
+    
+    /* Commits the changes made in the database to the database. */
     public void endTransaction() throws Exception {
-        /* Commits the changes made in the database to the database. */
+        
         conn.commit();
         /* Close the connection */
         conn.close();
     }
 
-    public void rollBack() throws Exception {
-        /* In case of an exception or error roll back the changes from database. 
+    /* In case of an exception or error roll back the changes from database. 
          */
+    public void rollBack() throws Exception {
+        
         conn.rollback();
     }
-    
-//    public Product getProductInfo(int productId) {
-//        // SQL Queries here
-//        
-//        //ResultSet queryResult = executeSQL();
-//        // Get CD Row from CD Database Table
-//        
-//        Product bean = new Product();
-//        bean.category = "Rock";
-//        //bean.cdId = 2;
-//        bean.title = "Linkin Park";
-//        bean.price = 10.00;
-//        
-//        return bean;
-//    }
     
 }

@@ -6,6 +6,7 @@
 
 
 
+<%@page import="com.etechies.server.dbagent.dao.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -20,7 +21,18 @@
     <body>
         
         
-        <% 
+        <% AccountDAO dao = new AccountDAO();
+        String uname = "test";
+        String upassword = "nat";
+        String fname = "nat";
+        String lname = "oakhaven";
+        String street = "df";
+        String province ="dsf";
+        String zip = "sdf";
+        String country ="dsf";
+        String phone = "sdf";
+        
+        dao.createAccount(uname, upassword, fname, lname, street, province, zip, country, phone);
         %>
         
         <div id="main">

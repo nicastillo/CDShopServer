@@ -3,9 +3,8 @@
  * and open the template in the editor.
  */
 package com.etechies.server.dbagent;
-import java.io.IOException;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

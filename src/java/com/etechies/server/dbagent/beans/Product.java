@@ -7,6 +7,9 @@ package com.etechies.server.dbagent.beans;
 /**
  *
  * @author Aman
+ * @author Natalia
+ * 
+ * Product Bean with getters and setters
  */
 public class Product {
 

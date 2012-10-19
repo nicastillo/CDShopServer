@@ -1,6 +1,6 @@
 package com.etechies.server.dbagent.dao;
-import com.etechies.server.dbagent.beans.Product;
 import com.etechies.server.dbagent.DBAgent;
+import com.etechies.server.dbagent.beans.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,13 +18,12 @@ public class ProductDAO {
         String[] param = {category};
         ArrayList<Product> cdlist = new ArrayList<Product>();
         //Product cd = new Product();
-        
         try {
             ResultSet rs = dba.getQueryResult("get_products_by_category",param);
                 while(rs.next()){
                 Product cd = new Product();
                 cd.setCdId(rs.getString("cdid"));
-                cd.setCategory(category=rs.getString("category"));
+                cd.setCategory(rs.getString("category"));
                 cd.setPrice(rs.getDouble("price"));
                 cd.setTitle(rs.getString("title"));
                    cdlist.add(cd);
@@ -41,7 +40,7 @@ public class ProductDAO {
      */  
     
     
-      public ArrayList<Product> getProductCatalog(){
+      public ArrayList<Product> getProductList(){
         ResultSet rs;
         ArrayList<Product> products = new ArrayList<Product>();
         //String[] category = {categoryId};
@@ -49,13 +48,10 @@ public class ProductDAO {
         rs = dba.getQueryResult("get_products", null);
           while (rs.next()) {
             Product p = new Product();
+            p.setCdId(rs.getString("cdid"));
+            p.setCategory(rs.getString("category"));
             p.setTitle(rs.getString("title"));
             p.setPrice(rs.getDouble("price"));
-            p.setCategory(rs.getString("category"));
-            
-//            p.title = rs.getString("title");
-//            p.price = rs.getDouble("price");
-//            p.category = rs.getString("category");
             products.add(p);
             } 
         } catch (SQLException e){
@@ -65,30 +61,30 @@ public class ProductDAO {
     }
     
     
+        /*
+         * 
+         */
+        public Product getProductInfo (String cdId){
+        
+        String[] param = {cdId};
+        Product p = new Product();
+        try {
+            ResultSet rs = dba.getQueryResult("get_product_by_cdid",param);
+                while(rs.next()){
+                p.setCdId(rs.getString("cdid"));
+                p.setCategory(rs.getString("category"));
+                p.setPrice(rs.getDouble("price"));
+                p.setTitle(rs.getString("title"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("MySql Error" + ex);
+        }
+        return p;
+    }
     
     
     
-    
-    
-//    public ArrayList<Product> getProductCatalog (){
-//        
-//       // String[] param = {category};
-//        ArrayList<Product> cdlist=null;
-//        Product cd=new Product();
-//        ResultSet rs = dba.getQueryResult("get_products",null);
-//        try {
-//            while(rs.next()){
-//            cd.cdId=rs.getString("cdid");
-//            cd.category=rs.getString("category");
-//            cd.price=rs.getDouble("price");
-//            cd.title=rs.getString("title");
-//               cdlist.add(cd);
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println("MySql Error" + ex);
-//        }
-//        return cdlist;
-//    }
+
     
 
 }
