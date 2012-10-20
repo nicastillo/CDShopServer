@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
   <endpoint implementation="com.etechies.server.ws.prodcat.ProductCatalogWebService" name="ProductCatalogWebService" url-pattern="/ProductCatalogWebService"/>
-  <endpoint implementation="com.etechies.server.ws.orderproc.OrderProcessWebSerice" name="OrderProcessWebSerice" url-pattern="/OrderProcessWebSerice"/>
+  <endpoint implementation="com.etechies.server.ws.orderproc.OrderProcessWebService" name="OrderProcessWebService" url-pattern="/OrderProcessWebService"/>
 </endpoints>
