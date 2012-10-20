@@ -31,11 +31,11 @@ public class ProductCatalogWebService {
     public ArrayList<Product> getProductList(@WebParam(name = "categoryId") String categoryId) {
         ProductDAO prodDAO = new ProductDAO();
         ArrayList<Product> prodList;
-        if (categoryId==null){
-            prodList = prodDAO.getProductList();
-        } else {
+//        if (categoryId==null){
+//            prodList = prodDAO.getProductList();
+//        } else {
             prodList = prodDAO.getProductList(categoryId);
-        } 
+//        } 
         return prodList;
     }
 
@@ -65,5 +65,13 @@ public class ProductCatalogWebService {
         ArrayList<String> list;
         list = catDAO.getCategoryList();
         return list;
+    }
+    
+        @WebMethod(operationName = "getProductCatalog")
+    public ArrayList<Product> getProductCatalog() {
+        ProductDAO prodDAO = new ProductDAO();
+        ArrayList<Product> prodList;
+        prodList = prodDAO.getProductList();
+        return prodList;
     }
 }
