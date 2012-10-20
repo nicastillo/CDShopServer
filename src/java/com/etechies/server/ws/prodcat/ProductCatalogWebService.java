@@ -49,8 +49,8 @@ public class ProductCatalogWebService {
     @WebMethod(operationName = "getProductInfo")
     public Product getProductInfo(@WebParam(name = "productId") String productId) {
         ProductDAO prodDAO = new ProductDAO();
-        Product product = new Product();
-        product = prodDAO.getProductInfo(productId);
+        //Product product = new Product();
+        Product product = prodDAO.getProductInfo(productId);
         return product;
     }
 

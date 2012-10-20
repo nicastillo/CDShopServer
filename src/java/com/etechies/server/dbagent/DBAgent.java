@@ -101,7 +101,7 @@ public class DBAgent {
         
         conn.commit();
         /* Close the connection */
-        conn.close();
+        //conn.close();
     }
 
     /* In case of an exception or error roll back the changes from database. 

@@ -67,9 +67,12 @@ public class AccountDAO {
         
         try{
             rows = dba.executeSQL("fill_address", addressInfo);
+            dba.startTransaction();
         } catch (SQLException ex) {
             System.out.println("MySql Error" + ex);
+            dba.rollBack();
         }
+        dba.endTransaction();
         return rows;
     }
     

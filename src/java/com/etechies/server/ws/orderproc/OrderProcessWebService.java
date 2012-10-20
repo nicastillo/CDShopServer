@@ -8,16 +8,19 @@ package com.etechies.server.ws.orderproc;
 import com.etechies.server.dbagent.beans.Account;
 import com.etechies.server.dbagent.beans.POrder;
 import com.etechies.server.dbagent.dao.AccountDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author Nat
  */
-@WebService(serviceName="OrderProcessWebSerice")
-public class OrderProcessWebSerice {
+@WebService(serviceName="OrderProcessWebService")
+public class OrderProcessWebService {
 
     /**
      * Web service operation
@@ -48,15 +51,33 @@ public class OrderProcessWebSerice {
      * @return the number of rows affected by the execution of the query
      */
     @WebMethod(operationName = "createAccount")
-    public String createAccount(@WebParam(name = "uname") String uname, @WebParam(name = "upassword") String upassword, @WebParam(name = "fname") String fname, @WebParam(name = "lname") String lname, @WebParam(name = "street") String street, @WebParam(name = "province") String province, @WebParam(name = "zip") String zip, @WebParam(name = "country") String country, @WebParam(name = "phone") String phone) throws Exception {
+    public String createAccount(@WebParam(name = "uname") @XmlElement(required=true) String uname, 
+                                @WebParam(name = "upassword") @XmlElement(required=true) String upassword, 
+                                @WebParam(name = "fname") @XmlElement(required=true) String fname, 
+                                @WebParam(name = "lname") @XmlElement(required=true) String lname, 
+                                @WebParam(name = "street")@XmlElement(required=true) String street, 
+                                @WebParam(name = "province") @XmlElement(required=true) String province, 
+                                @WebParam(name = "zip") @XmlElement(required=true) String zip, 
+                                @WebParam(name = "country")@XmlElement(required=true) String country, 
+                                @WebParam(name = "phone") String phone) {
         String message;
         AccountDAO accDAO = new AccountDAO();
-        int rows = accDAO.createAccount(uname, upassword, fname, lname, street, province, zip, country, phone);
+        int rows = 0;
+        boolean e = false;
+            try {
+                rows = accDAO.createAccount(uname, upassword, fname, lname, street, province, zip, country, phone);
+            } catch (Exception ex) {
+                Logger.getLogger(OrderProcessWebService.class.getName()).log(Level.SEVERE, null, ex);
+                e = true;
+            }
         
         if (rows > 0){
             message = "Account succesfully created";
+        } else if (e == true ){
+            message = "Failed to create account: Ursername is already taken"; 
         } else {
-            message = "Failed to create account: Username is already taken";
+            message = "Failed to create account: Please make sure all fields are complete";
+        
             
         }
         //TODO write your implementation code here:
