@@ -69,9 +69,9 @@ public class ShoppingCart {
         }
         
         public Double getTotal() {
-               Double total = 0.0;
-               total = (this.getSubtotal()*(1.16));
-               return total;
+               Double totalamount;
+               totalamount = this.getSubtotal()*(1.16);
+               return totalamount;
            }
 }
 

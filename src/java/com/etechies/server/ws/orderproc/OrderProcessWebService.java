@@ -26,13 +26,12 @@ public class OrderProcessWebService {
      * Web service operation
      * Gets the information of a user
      * @param uname - the user's username 
-     * @param upassword - the user's password
      * @return the account information of a user
      */
     @WebMethod(operationName = "getAccountInfo")
-    public Account getAccountInfo(@WebParam(name = "uname") String uname, @WebParam(name = "upassword") String upassword) {
+    public Account getAccountInfo(@WebParam(name = "uname") String uname) {
         AccountDAO accDAO = new AccountDAO();
-        Account acc = accDAO.getAccountInfo(uname, upassword);
+        Account acc = accDAO.getAccountInfo(uname);
         //TODO write your implementation code here:
         return acc;
     }

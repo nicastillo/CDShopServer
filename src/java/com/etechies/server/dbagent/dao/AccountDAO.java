@@ -22,18 +22,18 @@ public class AccountDAO {
     
     /* Gets all the revelant information of a spefic account
      * @param uname - the user's username
-     * @param upassword - the user's password
      * @returns An account object that contains all the data
      * 
      */
     
-    public Account getAccountInfo (String uname, String upassword){       
-        String[] param = {uname, upassword};
+    public Account getAccountInfo (String uname){       
+        String[] param = {uname};
         Account account = new Account();
         try {
             ResultSet rs = dba.getQueryResult("get_account_info", param);
                 while(rs.next()){
                     account.setUserId(rs.getInt("userid"));
+                    account.setUpassword(rs.getString("upassword"));
                     account.setFname(rs.getString("fname"));
                     account.setLname(rs.getString("lname"));
                     account.setStreet(rs.getString("street"));
