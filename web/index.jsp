@@ -6,6 +6,12 @@
 
 
 
+<%@page import="com.etechies.server.shoppingcart.ShoppingCart"%>
+<%@page import="com.sun.org.apache.bcel.internal.generic.AALOAD"%>
+<%@page import="com.etechies.server.dbagent.dao.POrderDAO"%>
+<%@page import="com.etechies.server.dbagent.dao.ProductDAO"%>
+<%@page import="com.etechies.server.dbagent.beans.Product"%>
+<%@page import="com.etechies.server.shoppingcart.ShoppingCartItem"%>
 <%@page import="com.etechies.server.dbagent.dao.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -21,18 +27,18 @@
     <body>
         
         
-        <% AccountDAO dao = new AccountDAO();
-        String uname = "test";
-        String upassword = "nat";
-        String fname = "nat";
-        String lname = "oakhaven";
-        String street = "df";
-        String province ="dsf";
-        String zip = "sdf";
-        String country ="dsf";
-        String phone = "sdf";
+        <% 
+//        Product p= new Product();
+//        ProductDAO dao = new ProductDAO();
+//        p = dao.getProductInfo("cd001");
+//        
+//        ShoppingCartItem item = new ShoppingCartItem(p);
+//        ShoppingCart cart = new ShoppingCart();
+//        cart.addItem(p);
+//        
+//        POrderDAO podao = new POrderDAO();
+//        podao.createOrder(1, cart);
         
-        dao.createAccount(uname, upassword, fname, lname, street, province, zip, country, phone);
         %>
         
         <div id="main">
