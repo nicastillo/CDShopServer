@@ -4,13 +4,11 @@
  */
 package com.etechies.server.dbagent;
 
-import com.etechies.server.dbagent.beans.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Statement;
 
 /**
  *
@@ -45,19 +43,21 @@ public class DBAgent {
         ResultSet rs = null;
         try {
             String query = prop.getQuery(queryId);
-            pstmt = conn.prepareStatement(query);
+            pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             if (parameters!= null) {
                 for (int i = 0; i < parameters.length; i++) {
                     pstmt.setString((i + 1), parameters[i]);
                 }
-            }
                 intRows = pstmt.executeUpdate();
                 rs = pstmt.getGeneratedKeys(); 
                 if ( rs != null && rs.next() ) 
                 { 
                     intRows = rs.getInt(1); 
-                }           
-            intRows = pstmt.executeUpdate();          
+            } else {
+                 intRows = pstmt.executeUpdate();   
+                }
+            }           
+                      
       } catch (SQLException e){
             System.out.println(e.getMessage());
             if (e.getMessage().equals("MySQLIntegrityConstraintViolationException")){

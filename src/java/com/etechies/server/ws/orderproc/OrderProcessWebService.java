@@ -8,6 +8,8 @@ package com.etechies.server.ws.orderproc;
 import com.etechies.server.dbagent.beans.Account;
 import com.etechies.server.dbagent.beans.POrder;
 import com.etechies.server.dbagent.dao.AccountDAO;
+import com.etechies.server.dbagent.dao.POrderDAO;
+import com.etechies.server.shoppingcart.ShoppingCart;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
@@ -81,5 +83,53 @@ public class OrderProcessWebService {
         }
         //TODO write your implementation code here:
         return message;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "createOrder")
+    public POrder createOrder(@WebParam(name = "userId") int userId,  @WebParam(name = "cart") ShoppingCart cart) {
+        POrderDAO poDAO = new POrderDAO();
+        POrder po;
+        po = new POrder();
+        
+        int rows = 0;
+        
+        try {
+                po = poDAO.createOrder(userId, cart);
+            } catch (Exception ex) {
+                Logger.getLogger(OrderProcessWebService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        return po;
+    }
+    
+       @WebMethod(operationName = "confirmOrder")
+    public boolean confirmOrder(@WebParam(name = "orderId") int orderId, @WebParam(name = "paymentInfo") boolean paymentInfo) {
+        POrderDAO poDAO = new POrderDAO();
+        boolean ok;
+        try {
+            ok = poDAO.confirmOrder(orderId, paymentInfo);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderProcessWebService.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        //TODO write your implementation code here:
+        return ok;
+    }
+       
+        @WebMethod(operationName = "denyOrder")
+    public boolean denyOrder(@WebParam(name = "orderId") int orderId, @WebParam(name = "paymentInfo") boolean paymentInfo) {
+        POrderDAO poDAO = new POrderDAO();
+        boolean ok;
+        try {
+            ok = poDAO.denyOrder(orderId, paymentInfo);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderProcessWebService.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        //TODO write your implementation code here:
+        return ok;
     }
 }

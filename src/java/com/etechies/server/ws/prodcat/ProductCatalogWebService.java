@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -47,10 +48,11 @@ public class ProductCatalogWebService {
      * @returns the product information of a certain CD
      */
     @WebMethod(operationName = "getProductInfo")
-    public Product getProductInfo(@WebParam(name = "productId") String productId) {
+    public Product getProductInfo(@WebParam(name = "productId") @XmlElement(required = true) String productId) {
         ProductDAO prodDAO = new ProductDAO();
         //Product product = new Product();
-        Product product = prodDAO.getProductInfo(productId);
+        Product product;
+        product = prodDAO.getProductInfo(productId);
         return product;
     }
 

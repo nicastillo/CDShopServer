@@ -78,6 +78,7 @@ public class ProductDAO {
             }
         } catch (SQLException ex) {
             System.out.println("MySql Error" + ex);
+            
         }
         return p;
     }
