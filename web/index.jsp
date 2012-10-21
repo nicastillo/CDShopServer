@@ -6,12 +6,13 @@
 
 
 
-<%@page import="com.etechies.server.shoppingcart.ShoppingCart"%>
+
+<%@page import="com.sun.java.swing.plaf.windows.WindowsBorders.ProgressBarBorder"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.sun.org.apache.bcel.internal.generic.AALOAD"%>
 <%@page import="com.etechies.server.dbagent.dao.POrderDAO"%>
 <%@page import="com.etechies.server.dbagent.dao.ProductDAO"%>
 <%@page import="com.etechies.server.dbagent.beans.Product"%>
-<%@page import="com.etechies.server.shoppingcart.ShoppingCartItem"%>
 <%@page import="com.etechies.server.dbagent.dao.AccountDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -33,8 +34,11 @@
         //p = dao.getProductInfo("cd001");
         
         //Product item = new Product("cd001");
-        ShoppingCart cart = new ShoppingCart();
-        cart.addItem("cd001");
+        ArrayList<Product> cart = new ArrayList<Product>();
+        Product prod;
+        ProductDAO productDAO = new ProductDAO();
+        prod = productDAO.getProductInfo("cd001");
+        cart.add(prod);
         
         POrderDAO podao = new POrderDAO();
         podao.createOrder(1, cart);

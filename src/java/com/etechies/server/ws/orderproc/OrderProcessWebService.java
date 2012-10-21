@@ -7,9 +7,10 @@ package com.etechies.server.ws.orderproc;
 
 import com.etechies.server.dbagent.beans.Account;
 import com.etechies.server.dbagent.beans.POrder;
+import com.etechies.server.dbagent.beans.Product;
 import com.etechies.server.dbagent.dao.AccountDAO;
 import com.etechies.server.dbagent.dao.POrderDAO;
-import com.etechies.server.shoppingcart.ShoppingCart;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
@@ -88,7 +89,7 @@ public class OrderProcessWebService {
      * Web service operation
      */
     @WebMethod(operationName = "createOrder")
-    public POrder createOrder(@WebParam(name = "userId") int userId,  @WebParam(name = "cart") ShoppingCart cart) {
+    public POrder createOrder(@WebParam(name = "userId") int userId,  @WebParam(name = "cart") ArrayList<Product> products) {
         POrderDAO poDAO = new POrderDAO();
         POrder po;
         po = new POrder();
@@ -96,7 +97,7 @@ public class OrderProcessWebService {
         int rows = 0;
         
         try {
-                po = poDAO.createOrder(userId, cart);
+                po = poDAO.createOrder(userId, products);
             } catch (Exception ex) {
                 Logger.getLogger(OrderProcessWebService.class.getName()).log(Level.SEVERE, null, ex);
             }
