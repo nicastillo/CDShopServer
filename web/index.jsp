@@ -28,16 +28,16 @@
         
         
         <% 
-//        Product p= new Product();
-//        ProductDAO dao = new ProductDAO();
-//        p = dao.getProductInfo("cd001");
-//        
-//        ShoppingCartItem item = new ShoppingCartItem(p);
-//        ShoppingCart cart = new ShoppingCart();
-//        cart.addItem(p);
-//        
-//        POrderDAO podao = new POrderDAO();
-//        podao.createOrder(1, cart);
+        //Product p= new Product();
+        //ProductDAO dao = new ProductDAO();
+        //p = dao.getProductInfo("cd001");
+        
+        //Product item = new Product("cd001");
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem("cd001");
+        
+        POrderDAO podao = new POrderDAO();
+        podao.createOrder(1, cart);
         
         %>
         

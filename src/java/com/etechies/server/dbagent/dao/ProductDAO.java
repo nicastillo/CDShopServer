@@ -13,6 +13,7 @@ public class ProductDAO {
     
     DBAgent dba=new DBAgent();
     
+    
     public ArrayList<Product> getProductList (String category){
         
         String[] param = {category};

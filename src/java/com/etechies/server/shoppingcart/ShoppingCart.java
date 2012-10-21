@@ -5,6 +5,7 @@
 package com.etechies.server.shoppingcart;
 
 import com.etechies.server.dbagent.beans.Product;
+import com.etechies.server.dbagent.dao.ProductDAO;
 import java.util.ArrayList;
 
 /**
@@ -12,21 +13,25 @@ import java.util.ArrayList;
  * @author Nat
  */
 public class ShoppingCart {
-   ArrayList<ShoppingCartItem> items;
+   ArrayList<Product> items;
    int numOfItems;
    Double total;
    
    public ShoppingCart() {
-    items = new ArrayList<ShoppingCartItem>();
+    items = new ArrayList<Product>();
     numOfItems = 0;
     total = 0.0;
     }
    
    
    
-   public void addItem(Product cd) {
-        ShoppingCartItem cartItems = new ShoppingCartItem(cd);
-        items.add(cartItems);
+   public void addItem(String cdid) {
+       Product product = new Product();
+       ProductDAO pDAO = new ProductDAO();
+       product = pDAO.getProductInfo(cdid);
+       
+       
+        items.add(product);
         
         
         
@@ -40,14 +45,15 @@ public class ShoppingCart {
 //            }
         }
 
-   public void remove(Product cd){
-       ShoppingCartItem cartItems = new ShoppingCartItem(cd);
-       items.remove(cartItems);
+   public void remove(String cdid){
+       Product product = new Product();
+       product.setCdId(cdid);
+       items.remove(product);
      
     }
    
-    public ArrayList<ShoppingCartItem> getItems() {
-
+    public ArrayList<Product> getItems() {
+        
         return items;
     }
 
@@ -60,10 +66,10 @@ public class ShoppingCart {
         
         Double subtotal = 0.0;
         
-            for (ShoppingCartItem cartItems : items) {
+            for (Product cartItems : items) {
 
-                Product cd = (Product) cartItems.getCd();
-                subtotal += cd.getPrice();
+                //Product cd = (Product) cartItems.g(;
+                subtotal += cartItems.getPrice();
             }
             return subtotal;
         }

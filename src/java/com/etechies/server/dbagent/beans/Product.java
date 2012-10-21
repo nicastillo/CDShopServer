@@ -18,6 +18,15 @@ public class Product {
     private String title;
     private double price;
 
+    
+    
+    public  Product(){
+        
+    }
+    
+    public Product(String cdid){
+        this.cdId = cdid;
+    }
     /**
      * @return the cdId
      */

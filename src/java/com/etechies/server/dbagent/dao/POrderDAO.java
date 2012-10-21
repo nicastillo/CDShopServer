@@ -9,7 +9,6 @@ import com.etechies.server.dbagent.beans.POrder;
 import com.etechies.server.dbagent.beans.POrderItems;
 import com.etechies.server.dbagent.beans.Product;
 import com.etechies.server.shoppingcart.ShoppingCart;
-import com.etechies.server.shoppingcart.ShoppingCartItem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,10 +44,10 @@ public class POrderDAO {
             dba.rollBack();
         }
         dba.endTransaction();
-        ArrayList<ShoppingCartItem> cartitems = cart.getItems();
-        for (ShoppingCartItem i: cartitems){
+        ArrayList<Product> cartitems = cart.getItems();
+        for (Product i: cartitems){
             POrderItems poi = new POrderItems();
-            poi.setCdId(i.getCdid());
+            poi.setCdId(i.getCdId());
             poi.setPrice(i.getPrice());
             cdid = poi.getCdId();
             String price = Double.toString(poi.getPrice());
