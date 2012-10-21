@@ -34,7 +34,6 @@ public class OrderProcessWebService {
     public Account getAccountInfo(@WebParam(name = "uname") String uname) {
         AccountDAO accDAO = new AccountDAO();
         Account acc = accDAO.getAccountInfo(uname);
-        //TODO write your implementation code here:
         return acc;
     }
 
@@ -131,5 +130,14 @@ public class OrderProcessWebService {
         }
         //TODO write your implementation code here:
         return ok;
+    }
+        
+           @WebMethod(operationName = "getOrder")
+    public POrder getOrder(@WebParam(name = "orderId") int orderId) {
+        POrderDAO poDAO = new POrderDAO();
+        POrder order;
+        order = poDAO.getOrder(orderId);
+        //TODO write your implementation code here:
+        return order;
     }
 }

@@ -134,7 +134,7 @@ public class POrderDAO {
         String[] POInfo = {orderid};
         
         try {
-            rs = dba.getQueryResult("get_order", POInfo);
+            rs = dba.getQueryResult("get_order_by_poid", POInfo);
               while (rs.next()){
                   order.setUserId(rs.getInt("userid"));
                   order.setOrderId(rs.getInt("poid"));
